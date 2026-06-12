@@ -1,0 +1,691 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Laksh Agarwal — Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@1,400;1,700&display=swap" rel="stylesheet"/>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--cream:#f5f0e8;--ink:#0d0d0d;--gold:#c9a84c;--rust:#b84c2a;--steel:#1a2030;--mist:#8a9bb0;--acid:#e8f542;--dim:#111520;--border:rgba(255,255,255,0.07)}
+html{scroll-behavior:smooth}
+body{background:var(--ink);color:var(--cream);font-family:'Inter',sans-serif;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;pointer-events:none;z-index:999;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");opacity:0.35;mix-blend-mode:overlay}
+
+nav{position:fixed;top:0;left:0;right:0;z-index:100;display:flex;justify-content:space-between;align-items:center;padding:1.3rem 3.5rem;background:linear-gradient(to bottom,rgba(13,13,13,0.97) 0%,transparent 100%)}
+.nav-logo{font-family:'Bebas Neue',sans-serif;font-size:1.5rem;letter-spacing:0.14em;color:var(--cream)}
+.nav-links{display:flex;gap:2rem}
+.nav-links a{color:var(--mist);text-decoration:none;font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;transition:color 0.3s}
+.nav-links a:hover{color:var(--gold)}
+
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:flex-end;padding:6rem 3.5rem 4.5rem;position:relative;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 60% 55% at 85% 15%,rgba(201,168,76,0.09) 0%,transparent 60%),radial-gradient(ellipse 50% 70% at 5% 85%,rgba(26,32,48,0.95) 0%,transparent 70%),linear-gradient(135deg,#0d0d0d 0%,#111520 55%,#0d0d0d 100%)}
+.hero-ticker{position:absolute;top:44%;left:0;right:0;display:flex;gap:5rem;white-space:nowrap;overflow:hidden;font-family:'Bebas Neue',sans-serif;font-size:8rem;letter-spacing:0.04em;color:rgba(201,168,76,0.05);pointer-events:none;animation:ticker 35s linear infinite}
+@keyframes ticker{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+.hero-eyebrow{position:relative;z-index:1;display:flex;align-items:center;gap:1rem;margin-bottom:1.4rem}
+.hero-eyebrow-line{width:3rem;height:1px;background:var(--gold)}
+.hero-eyebrow span{font-size:0.68rem;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold)}
+.hero-title{position:relative;z-index:1;font-family:'Bebas Neue',sans-serif;font-size:clamp(4rem,10vw,9rem);line-height:0.88;letter-spacing:0.02em;color:var(--cream)}
+.hero-title em{font-family:'Playfair Display',serif;font-style:italic;font-size:0.6em;color:var(--gold);display:block;margin-bottom:0.1em}
+.hero-badges{position:relative;z-index:1;display:flex;gap:0.6rem;flex-wrap:wrap;margin-top:1.6rem}
+.badge{padding:0.28rem 0.8rem;border:1px solid rgba(201,168,76,0.35);font-size:0.62rem;letter-spacing:0.15em;text-transform:uppercase;color:var(--gold);background:rgba(201,168,76,0.06)}
+.hero-sub{position:relative;z-index:1;max-width:38rem;margin-top:1.4rem;font-size:0.95rem;line-height:1.78;color:var(--mist);font-weight:300}
+.hero-cta{position:relative;z-index:1;display:flex;align-items:center;gap:2rem;margin-top:2.5rem}
+.btn-primary{padding:0.85rem 2.2rem;background:var(--gold);color:var(--ink);font-size:0.7rem;letter-spacing:0.2em;text-transform:uppercase;font-weight:600;border:none;cursor:pointer;text-decoration:none;clip-path:polygon(8px 0%,100% 0%,calc(100% - 8px) 100%,0% 100%);transition:opacity 0.3s}
+.btn-primary:hover{opacity:0.82}
+.btn-ghost{color:var(--cream);font-size:0.7rem;letter-spacing:0.18em;text-transform:uppercase;text-decoration:none;display:flex;align-items:center;gap:0.5rem;border-bottom:1px solid rgba(138,155,176,0.4);padding-bottom:2px;transition:color 0.3s}
+.btn-ghost:hover{color:var(--gold)}
+.hero-scroll{position:absolute;right:3.5rem;bottom:4rem;z-index:1;display:flex;flex-direction:column;align-items:center;gap:0.75rem}
+.hero-scroll span{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--mist);writing-mode:vertical-rl}
+.scroll-line{width:1px;height:4rem;background:linear-gradient(to bottom,var(--gold),transparent);animation:scrollpulse 2s ease-in-out infinite}
+@keyframes scrollpulse{0%,100%{opacity:0.3}50%{opacity:1}}
+
+.reel-strip{display:flex;overflow-x:auto;scrollbar-width:none;border-top:1px solid rgba(201,168,76,0.25);border-bottom:1px solid rgba(201,168,76,0.25)}
+.reel-strip::-webkit-scrollbar{display:none}
+.reel-frame{flex:0 0 140px;height:80px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:3px;font-size:0.58rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--mist);border-right:1px solid var(--border);background:rgba(255,255,255,0.02);transition:background 0.3s}
+.reel-frame:hover{background:rgba(201,168,76,0.07);color:var(--gold)}
+.reel-num{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:rgba(201,168,76,0.18);line-height:1}
+
+section{padding:5.5rem 3.5rem}
+.section-eyebrow{display:flex;align-items:center;gap:1rem;margin-bottom:0.9rem}
+.section-eyebrow-line{width:2rem;height:1px;background:var(--gold)}
+.section-eyebrow span{font-size:0.64rem;letter-spacing:0.26em;text-transform:uppercase;color:var(--gold)}
+.section-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.2rem,4.5vw,3.5rem);letter-spacing:0.04em;color:var(--cream);margin-bottom:0.5rem}
+.section-sub{font-size:0.9rem;color:var(--mist);max-width:36rem;line-height:1.75;margin-bottom:3rem}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-visual{position:relative;background:var(--steel);border:1px solid rgba(201,168,76,0.12);overflow:hidden}
+.about-corner{position:absolute;width:1.8rem;height:1.8rem;border-color:var(--gold);border-style:solid}
+.corner-tl{top:0.8rem;left:0.8rem;border-width:2px 0 0 2px}
+.corner-br{bottom:0.8rem;right:0.8rem;border-width:0 2px 2px 0}
+.about-code{font-family:'Inter',monospace;font-size:0.73rem;line-height:2;color:var(--mist);padding:1.8rem;position:relative;z-index:1}
+.ck{color:var(--gold)}.cv{color:#98d4a3}.cs{color:#f9a875}.cc{color:#81c7f5}
+.about-text h3{font-family:'Bebas Neue',sans-serif;font-size:2rem;margin-bottom:1.1rem;color:var(--cream);line-height:1.1}
+.about-text p{font-size:0.91rem;line-height:1.82;color:var(--mist);margin-bottom:1.1rem}
+
+/* SKILLS UNIVERSE */
+.skills-universe{margin-top:2rem}
+.skill-category{margin-bottom:1.5rem}
+.skill-cat-label{font-size:0.6rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--gold);margin-bottom:0.6rem}
+.skill-tags{display:flex;flex-wrap:wrap;gap:0.4rem}
+.skill-tag{padding:0.25rem 0.7rem;border:1px solid rgba(201,168,76,0.25);font-size:0.62rem;letter-spacing:0.1em;text-transform:uppercase;color:rgba(201,168,76,0.85);background:rgba(201,168,76,0.04);transition:all 0.2s}
+.skill-tag:hover{border-color:rgba(201,168,76,0.6);background:rgba(201,168,76,0.1)}
+.skill-tag.mist{color:rgba(138,155,176,0.85);border-color:rgba(138,155,176,0.2);background:rgba(138,155,176,0.04)}
+.skill-tag.mist:hover{border-color:rgba(138,155,176,0.5)}
+
+/* PROJECTS FILTER */
+.filter-bar{display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:2rem}
+.filter-btn{padding:0.3rem 1rem;border:1px solid var(--border);font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--mist);background:transparent;cursor:pointer;transition:all 0.25s}
+.filter-btn:hover,.filter-btn.active{border-color:rgba(201,168,76,0.5);color:var(--gold);background:rgba(201,168,76,0.06)}
+
+/* PROJECTS GRID */
+.projects-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border)}
+.project-card{background:var(--ink);padding:2rem;position:relative;overflow:hidden;transition:background 0.35s;cursor:pointer}
+.project-card:hover{background:var(--dim)}
+.project-card::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform 0.4s}
+.project-card:hover::after{transform:scaleX(1)}
+.project-card[data-hidden="true"]{display:none}
+.project-num{font-family:'Bebas Neue',sans-serif;font-size:2.8rem;color:rgba(201,168,76,0.1);line-height:1;margin-bottom:1rem}
+.project-lang{display:inline-flex;align-items:center;gap:0.4rem;font-size:0.58rem;letter-spacing:0.16em;text-transform:uppercase;color:var(--rust);margin-bottom:0.7rem}
+.lang-dot{width:5px;height:5px;border-radius:50%;background:currentColor}
+.project-name{font-family:'Playfair Display',serif;font-style:italic;font-size:1.2rem;color:var(--cream);margin-bottom:0.6rem;line-height:1.3}
+.project-desc{font-size:0.8rem;color:var(--mist);line-height:1.7}
+.project-link{display:inline-flex;align-items:center;gap:0.4rem;margin-top:1.2rem;font-size:0.62rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--mist);text-decoration:none;border-bottom:1px solid rgba(138,155,176,0.25);padding-bottom:1px;transition:color 0.3s}
+.project-link:hover{color:var(--gold)}
+
+/* FEATURED */
+.featured{background:var(--steel);padding:3.5rem;display:grid;grid-template-columns:3fr 2fr;gap:4rem;align-items:center;position:relative;overflow:hidden;margin-top:1px}
+.featured::before{content:'FEATURED';position:absolute;top:1rem;right:1.5rem;font-family:'Bebas Neue',sans-serif;font-size:5rem;color:rgba(255,255,255,0.025);letter-spacing:0.1em;pointer-events:none}
+.live-dot{display:flex;align-items:center;gap:0.6rem;font-size:0.64rem;letter-spacing:0.22em;text-transform:uppercase;color:var(--acid);margin-bottom:1.3rem}
+.live-dot::before{content:'';width:0.42rem;height:0.42rem;background:var(--acid);border-radius:50%;animation:blink 1.5s ease-in-out infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0.15}}
+.featured-title{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;color:var(--cream);letter-spacing:0.04em;margin-bottom:0.85rem;line-height:1.05}
+.featured-desc{font-size:0.9rem;color:var(--mist);line-height:1.8;margin-bottom:1.5rem}
+.feat-stack{font-size:0.65rem;letter-spacing:0.11em;color:rgba(138,155,176,0.55);text-transform:uppercase;border-top:1px solid rgba(255,255,255,0.07);padding-top:1.1rem}
+.featured-visual{height:14rem;background:rgba(0,0,0,0.35);display:flex;align-items:center;justify-content:center;border:1px solid rgba(201,168,76,0.15);position:relative;overflow:hidden}
+.fv-text{font-family:'Bebas Neue',sans-serif;font-size:3rem;color:rgba(201,168,76,0.18);letter-spacing:0.1em;position:relative;z-index:1;text-align:center;line-height:1.1}
+.fv-ring{position:absolute;border-radius:50%;border:1px solid rgba(201,168,76,0.1);animation:spin 12s linear infinite}
+.fv-ring1{width:9rem;height:9rem}
+.fv-ring2{width:5.5rem;height:5.5rem;animation-duration:7s;animation-direction:reverse}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* EXPERIENCE */
+.exp-section{background:#080808}
+.exp-list{max-width:56rem}
+.exp-item{display:grid;grid-template-columns:11rem 1fr;gap:3rem;padding:2.2rem 0;border-bottom:1px solid rgba(255,255,255,0.06)}
+.exp-year{font-family:'Bebas Neue',sans-serif;font-size:0.95rem;color:var(--gold);letter-spacing:0.1em;padding-top:0.2rem;line-height:1.4}
+.exp-role{font-size:0.97rem;font-weight:500;color:var(--cream);margin-bottom:0.22rem}
+.exp-org{font-size:0.73rem;letter-spacing:0.12em;text-transform:uppercase;color:var(--mist);margin-bottom:0.75rem}
+.exp-detail{list-style:none}
+.exp-detail li{font-size:0.83rem;color:rgba(138,155,176,0.72);line-height:1.72;padding-left:1rem;position:relative;margin-bottom:0.35rem}
+.exp-detail li::before{content:'—';position:absolute;left:0;color:var(--gold)}
+
+/* EDUCATION */
+.edu-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.edu-card{background:var(--ink);padding:2.2rem;position:relative}
+.edu-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--gold)}
+.edu-deg{font-family:'Bebas Neue',sans-serif;font-size:1.3rem;color:var(--cream);letter-spacing:0.04em;margin-bottom:0.4rem}
+.edu-school{font-size:0.83rem;color:var(--mist);margin-bottom:0.3rem}
+.edu-year{font-size:0.64rem;letter-spacing:0.18em;text-transform:uppercase;color:var(--gold)}
+
+/* AWARDS */
+.awards-grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border);margin-bottom:0}
+.award-card{background:var(--ink);padding:2.2rem;border-left:3px solid var(--gold);position:relative;overflow:hidden}
+.award-icon{font-size:2rem;margin-bottom:0.7rem;line-height:1}
+.award-title{font-size:0.93rem;font-weight:500;color:var(--cream);margin-bottom:0.25rem}
+.award-org{font-size:0.68rem;letter-spacing:0.14em;text-transform:uppercase;color:var(--gold);margin-bottom:0.55rem}
+.award-desc{font-size:0.8rem;color:var(--mist);line-height:1.7}
+
+/* CERTS */
+.cert-section{background:#080808}
+.cert-scroll{display:flex;gap:0.75rem;overflow-x:auto;padding-bottom:0.75rem;flex-wrap:wrap;scrollbar-width:none}
+.cert-scroll::-webkit-scrollbar{display:none}
+.cert-pill{padding:0.5rem 1.2rem;border:1px solid rgba(255,255,255,0.1);font-size:0.67rem;letter-spacing:0.11em;text-transform:uppercase;color:var(--mist);background:rgba(255,255,255,0.02);transition:all 0.3s;white-space:nowrap}
+.cert-pill:hover{border-color:rgba(201,168,76,0.4);color:var(--gold)}
+
+/* CONTACT */
+.contact-section{background:var(--steel);position:relative;overflow:hidden;text-align:center}
+.contact-section::before{content:'HIRE ME';position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Bebas Neue',sans-serif;font-size:16rem;color:rgba(255,255,255,0.02);white-space:nowrap;pointer-events:none;letter-spacing:0.04em}
+.contact-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.8rem,7vw,5rem);color:var(--cream);position:relative;z-index:1;margin-bottom:0.8rem}
+.contact-title em{color:var(--gold);font-style:normal}
+.contact-sub{font-size:0.93rem;color:var(--mist);position:relative;z-index:1;margin-bottom:1.5rem;line-height:1.75}
+.contact-info{position:relative;z-index:1;margin-bottom:2rem;font-size:0.8rem;letter-spacing:0.1em;color:var(--mist)}
+.contact-info a{color:var(--gold);text-decoration:none}
+.contact-links{display:flex;justify-content:center;gap:1.2rem;position:relative;z-index:1;flex-wrap:wrap}
+.contact-link{padding:0.85rem 2rem;border:1px solid rgba(201,168,76,0.4);font-size:0.68rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--cream);text-decoration:none;transition:all 0.3s}
+.contact-link:hover{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.contact-link.primary{background:var(--gold);color:var(--ink);border-color:var(--gold)}
+.contact-link.primary:hover{opacity:0.82}
+.opt-badge{display:inline-block;margin-top:2rem;padding:0.38rem 1.1rem;border:1px solid rgba(138,155,176,0.28);font-size:0.62rem;letter-spacing:0.2em;text-transform:uppercase;color:var(--mist);position:relative;z-index:1}
+
+footer{padding:1.8rem 3.5rem;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center}
+.footer-copy{font-size:0.65rem;letter-spacing:0.15em;color:rgba(138,155,176,0.4);text-transform:uppercase}
+
+@media(max-width:780px){
+  nav{padding:1.1rem 1.5rem}
+  section{padding:4rem 1.5rem}
+  .hero{padding:5rem 1.5rem 3.5rem}
+  .about-grid,.featured,.edu-grid,.awards-grid{grid-template-columns:1fr}
+  .projects-grid{grid-template-columns:1fr 1fr}
+  .exp-item{grid-template-columns:1fr;gap:0.4rem}
+  .hero-scroll{display:none}
+  footer{flex-direction:column;gap:0.6rem;text-align:center;padding:1.5rem}
+}
+@media(max-width:500px){.projects-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-logo">L A</div>
+  <div class="nav-links">
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a href="#experience">Experience</a>
+    <a href="#awards">Awards</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-ticker" aria-hidden="true">
+    VOICE AI &nbsp;&nbsp; FULL-STACK &nbsp;&nbsp; ML &nbsp;&nbsp; DATA &nbsp;&nbsp; CLOUD &nbsp;&nbsp; NLP &nbsp;&nbsp; DEVOPS &nbsp;&nbsp; VOICE AI &nbsp;&nbsp; FULL-STACK &nbsp;&nbsp; ML &nbsp;&nbsp; DATA &nbsp;&nbsp; CLOUD &nbsp;&nbsp; NLP &nbsp;&nbsp; DEVOPS &nbsp;&nbsp;
+    VOICE AI &nbsp;&nbsp; FULL-STACK &nbsp;&nbsp; ML &nbsp;&nbsp; DATA &nbsp;&nbsp; CLOUD &nbsp;&nbsp; NLP &nbsp;&nbsp; DEVOPS &nbsp;&nbsp; VOICE AI &nbsp;&nbsp; FULL-STACK &nbsp;&nbsp; ML &nbsp;&nbsp; DATA &nbsp;&nbsp; CLOUD &nbsp;&nbsp; NLP &nbsp;&nbsp; DEVOPS &nbsp;&nbsp;
+  </div>
+  <div class="hero-eyebrow">
+    <div class="hero-eyebrow-line"></div>
+    <span>Software Engineer · AI/ML · Voice AI · Full-Stack · Data Science</span>
+  </div>
+  <h1 class="hero-title">
+    <em>the work of</em>
+    Laksh<br/>Agarwal
+  </h1>
+  <div class="hero-badges">
+    <span class="badge">M.S. CS — CSU Fresno 2026</span>
+    <span class="badge">ASA DataFest 2024 — 1st Place</span>
+    <span class="badge">24 Public Repos</span>
+    <span class="badge">OPT Authorized</span>
+  </div>
+  <p class="hero-sub">Building production voice AI systems, ML inference APIs, full-stack platforms, and data pipelines. Every project shipped end-to-end — from architecture to deployment.</p>
+  <div class="hero-cta">
+    <a href="#work" class="btn-primary">View All Work</a>
+    <a href="#contact" class="btn-ghost">Get In Touch →</a>
+  </div>
+  <div class="hero-scroll" aria-hidden="true">
+    <span>Scroll</span>
+    <div class="scroll-line"></div>
+  </div>
+</section>
+
+<div class="reel-strip" role="list" aria-label="Tech stack">
+  <div class="reel-frame"><div class="reel-num">PY</div>Python</div>
+  <div class="reel-frame"><div class="reel-num">TS</div>TypeScript</div>
+  <div class="reel-frame"><div class="reel-num">C#</div>C-Sharp</div>
+  <div class="reel-frame"><div class="reel-num">JV</div>Java</div>
+  <div class="reel-frame"><div class="reel-num">C+</div>C++</div>
+  <div class="reel-frame"><div class="reel-num">JS</div>JavaScript</div>
+  <div class="reel-frame"><div class="reel-num">FA</div>FastAPI</div>
+  <div class="reel-frame"><div class="reel-num">RC</div>React</div>
+  <div class="reel-frame"><div class="reel-num">PT</div>PyTorch</div>
+  <div class="reel-frame"><div class="reel-num">AI</div>Claude API</div>
+  <div class="reel-frame"><div class="reel-num">GC</div>GCP</div>
+  <div class="reel-frame"><div class="reel-num">K8</div>Kubernetes</div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-visual">
+      <div class="about-corner corner-tl"></div>
+      <div class="about-corner corner-br"></div>
+      <pre class="about-code" aria-hidden="true"><span class="ck">const</span> <span class="cv">laksh</span> = {
+  <span class="ck">name</span>:    <span class="cs">"Laksh Agarwal"</span>,
+  <span class="ck">degree</span>:  <span class="cs">"M.S. CS — CSU Fresno"</span>,
+  <span class="ck">based</span>:   <span class="cs">"Fresno, CA"</span>,
+  <span class="ck">repos</span>:   <span class="cc">24</span>,
+  <span class="ck">teaching</span>:<span class="cc"> 6</span> + <span class="cs">" years"</span>,
+  <span class="ck">langs</span>: [
+    <span class="cs">"Python"</span>, <span class="cs">"TypeScript"</span>,
+    <span class="cs">"C#"</span>, <span class="cs">"Java"</span>, <span class="cs">"C++"</span>
+  ],
+  <span class="ck">focus</span>: [
+    <span class="cs">"Voice AI"</span>, <span class="cs">"LLM APIs"</span>,
+    <span class="cs">"Full-Stack"</span>, <span class="cs">"DevOps"</span>
+  ],
+  <span class="ck">status</span>: <span class="cv">open_to_work</span>
+};</pre>
+    </div>
+    <div class="about-text">
+      <h3>Engineer who ships,<br/>teacher who explains</h3>
+      <p>M.S. Computer Science, CSU Fresno (2026). My work spans real-time voice AI, ML inference APIs, cloud scaling, and production full-stack platforms. I've shipped software commercially across three roles before finishing my graduate degree.</p>
+      <p>Six-plus years teaching CS and mathematics makes me unusually good at communicating complex systems simply — a skill that turns out to matter a lot in engineering teams.</p>
+      <div class="skills-universe">
+        <div class="skill-category">
+          <div class="skill-cat-label">Languages</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span><span class="skill-tag">TypeScript</span><span class="skill-tag">JavaScript</span><span class="skill-tag">C#</span><span class="skill-tag">Java</span><span class="skill-tag">C++</span><span class="skill-tag">C</span><span class="skill-tag">SQL</span><span class="skill-tag">PowerShell</span><span class="skill-tag">Kotlin</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-label">AI / ML / Voice</div>
+          <div class="skill-tags">
+            <span class="skill-tag">Claude API</span><span class="skill-tag">PyTorch</span><span class="skill-tag">TensorFlow</span><span class="skill-tag">ResNet50</span><span class="skill-tag">scikit-learn</span><span class="skill-tag">Google STT</span><span class="skill-tag">TTS / Voice Cloning</span><span class="skill-tag">NLP</span><span class="skill-tag">Computer Vision</span><span class="skill-tag">CNN</span><span class="skill-tag">Speech Recognition</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-label">Backend / APIs</div>
+          <div class="skill-tags">
+            <span class="skill-tag">FastAPI</span><span class="skill-tag">Spring Boot</span><span class="skill-tag">Django</span><span class="skill-tag">Node.js</span><span class="skill-tag">REST APIs</span><span class="skill-tag">WebSockets</span><span class="skill-tag">asyncio</span><span class="skill-tag">SQLite</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-label">Frontend</div>
+          <div class="skill-tags">
+            <span class="skill-tag">React</span><span class="skill-tag">AngularJS</span><span class="skill-tag">Vite</span><span class="skill-tag">HTML/CSS</span><span class="skill-tag">OpenGL</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-label">Cloud / DevOps / Tools</div>
+          <div class="skill-tags">
+            <span class="skill-tag mist">GCP</span><span class="skill-tag mist">AWS</span><span class="skill-tag mist">Firebase</span><span class="skill-tag mist">Cloud Firestore</span><span class="skill-tag mist">Docker</span><span class="skill-tag mist">Kubernetes</span><span class="skill-tag mist">Jenkins</span><span class="skill-tag mist">Spinnaker</span><span class="skill-tag mist">GitHub</span><span class="skill-tag mist">Linux</span>
+          </div>
+        </div>
+        <div class="skill-category">
+          <div class="skill-cat-label">Data Science</div>
+          <div class="skill-tags">
+            <span class="skill-tag mist">Pandas</span><span class="skill-tag mist">NumPy</span><span class="skill-tag mist">Jupyter</span><span class="skill-tag mist">Data Analysis</span><span class="skill-tag mist">Machine Learning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="work" style="padding-top:0">
+  <div class="section-eyebrow">
+    <div class="section-eyebrow-line"></div>
+    <span>GitHub Projects</span>
+  </div>
+  <h2 class="section-title">24 Repos. All Public.</h2>
+  <p class="section-sub">Every project below is on GitHub — from AI pipelines to graphics engines to automation workflows.</p>
+
+  <div class="filter-bar" id="filterBar">
+    <button class="filter-btn active" data-filter="all">All</button>
+    <button class="filter-btn" data-filter="ai">AI / ML</button>
+    <button class="filter-btn" data-filter="fullstack">Full-Stack</button>
+    <button class="filter-btn" data-filter="data">Data Science</button>
+    <button class="filter-btn" data-filter="systems">Systems</button>
+    <button class="filter-btn" data-filter="automation">Automation</button>
+  </div>
+
+  <div class="projects-grid" id="projectsGrid">
+
+    <div class="project-card" data-cat="ai">
+      <div class="project-num" aria-hidden="true">01</div>
+      <div class="project-lang"><span class="lang-dot"></span>Python · Voice AI</div>
+      <h3 class="project-name">AquaCalm AI</h3>
+      <p class="project-desc">Real-time voice assistant — Google STT → Claude LLM → TTS with voice cloning. WebSocket streaming, SQLite memory, full REST API.</p>
+      <a href="https://github.com/falcon-140/Aquacalm-AI" class="project-link">github.com/falcon-140/Aquacalm-AI →</a>
+    </div>
+
+    <div class="project-card" data-cat="ai">
+      <div class="project-num" aria-hidden="true">02</div>
+      <div class="project-lang"><span class="lang-dot"></span>Python · ML</div>
+      <h3 class="project-name">AI Inference API</h3>
+      <p class="project-desc">Production image classification REST API with ResNet50 — top-5 predictions, confidence scores, OpenAPI docs, health checks.</p>
+      <a href="https://github.com/falcon-140/ai-inference-api" class="project-link">github.com/falcon-140/ai-inference-api →</a>
+    </div>
+
+    <div class="project-card" data-cat="ai">
+      <div class="project-num" aria-hidden="true">03</div>
+      <div class="project-lang"><span class="lang-dot"></span>PowerShell · AI</div>
+      <h3 class="project-name">Mental Health Assistant AI</h3>
+      <p class="project-desc">AI-powered mental health support assistant — conversational pipeline with compassionate response design and session handling.</p>
+      <a href="https://github.com/falcon-140/Mental-Health-Asssitant-AI" class="project-link">github.com/falcon-140/Mental-Health-Asssitant-AI →</a>
+    </div>
+
+    <div class="project-card" data-cat="data">
+      <div class="project-num" aria-hidden="true">04</div>
+      <div class="project-lang"><span class="lang-dot"></span>Jupyter · Data</div>
+      <h3 class="project-name">ByteMarket Analytics</h3>
+      <p class="project-desc">Market data analysis pipeline — business intelligence, trend analysis, and data visualization for commerce insights.</p>
+      <a href="https://github.com/falcon-140/ByteMarket-Analytics" class="project-link">github.com/falcon-140/ByteMarket-Analytics →</a>
+    </div>
+
+    <div class="project-card" data-cat="data">
+      <div class="project-num" aria-hidden="true">05</div>
+      <div class="project-lang"><span class="lang-dot"></span>Jupyter · DB</div>
+      <h3 class="project-name">DreadnoughtDB</h3>
+      <p class="project-desc">Database analysis and engineering project — data modeling, query optimization, and structured data pipeline work.</p>
+      <a href="https://github.com/falcon-140/DreadnoughtDB" class="project-link">github.com/falcon-140/DreadnoughtDB →</a>
+    </div>
+
+    <div class="project-card" data-cat="data">
+      <div class="project-num" aria-hidden="true">06</div>
+      <div class="project-lang"><span class="lang-dot"></span>Jupyter · Cloud</div>
+      <h3 class="project-name">LLM Cloud Scaling Analysis</h3>
+      <p class="project-desc">Analysis of cloud scaling strategies, throughput bottlenecks, and cost efficiency for LLM inference workloads in production.</p>
+      <a href="https://github.com/falcon-140/AI-driven-Cloud-scaling-for-LLM-services-Data-Analysis" class="project-link">View on GitHub →</a>
+    </div>
+
+    <div class="project-card" data-cat="fullstack">
+      <div class="project-num" aria-hidden="true">07</div>
+      <div class="project-lang"><span class="lang-dot"></span>TypeScript · React</div>
+      <h3 class="project-name">BSR — Billing System</h3>
+      <p class="project-desc">Fully typed React/TypeScript billing platform with Vite, custom hooks, and modular component architecture — digitizing manual bookkeeping.</p>
+      <a href="https://github.com/falcon-140/BSR" class="project-link">github.com/falcon-140/BSR →</a>
+    </div>
+
+    <div class="project-card" data-cat="fullstack">
+      <div class="project-num" aria-hidden="true">08</div>
+      <div class="project-lang"><span class="lang-dot"></span>C# · E-Commerce</div>
+      <h3 class="project-name">E-Commerce App</h3>
+      <p class="project-desc">Full e-commerce application in C# — product catalog, shopping cart, order processing. Contracted and delivered end-to-end for a retail client.</p>
+      <a href="https://github.com/falcon-140/EcommerceApp" class="project-link">github.com/falcon-140/EcommerceApp →</a>
+    </div>
+
+    <div class="project-card" data-cat="fullstack">
+      <div class="project-num" aria-hidden="true">09</div>
+      <div class="project-lang"><span class="lang-dot"></span>JavaScript · Web</div>
+      <h3 class="project-name">Bus Reservation System</h3>
+      <p class="project-desc">Full-stack seat booking and reservation management app — real-time availability, booking flow, and reservation tracking.</p>
+      <a href="https://github.com/falcon-140/bus-reservation" class="project-link">github.com/falcon-140/bus-reservation →</a>
+    </div>
+
+    <div class="project-card" data-cat="fullstack">
+      <div class="project-num" aria-hidden="true">10</div>
+      <div class="project-lang"><span class="lang-dot"></span>Java · Banking</div>
+      <h3 class="project-name">Banking App</h3>
+      <p class="project-desc">Full-stack banking application in Java — account management, transactions, and financial operations. MIT licensed open source.</p>
+      <a href="https://github.com/falcon-140/bankingapp" class="project-link">github.com/falcon-140/bankingapp →</a>
+    </div>
+
+    <div class="project-card" data-cat="automation">
+      <div class="project-num" aria-hidden="true">11</div>
+      <div class="project-lang"><span class="lang-dot"></span>N8N · AI</div>
+      <h3 class="project-name">N8N Job Automation</h3>
+      <p class="project-desc">Automated job scraping, Claude API resume tailoring with ATS scoring (80%+ target), Gmail draft generation with human approval gate.</p>
+      <a href="https://github.com/falcon-140/n8n-job-automation" class="project-link">github.com/falcon-140/n8n-job-automation →</a>
+    </div>
+
+    <div class="project-card" data-cat="automation">
+      <div class="project-num" aria-hidden="true">12</div>
+      <div class="project-lang"><span class="lang-dot"></span>Auto-Apply</div>
+      <h3 class="project-name">AutoApply Pipeline</h3>
+      <p class="project-desc">Scheduled application pipeline with AI resume tailoring, job scraping automation, and end-to-end application workflow management.</p>
+      <a href="https://github.com/falcon-140/autoapply" class="project-link">github.com/falcon-140/autoapply →</a>
+    </div>
+
+    <div class="project-card" data-cat="data">
+      <div class="project-num" aria-hidden="true">13</div>
+      <div class="project-lang"><span class="lang-dot"></span>Jupyter · Health</div>
+      <h3 class="project-name">Student Meal Planner</h3>
+      <p class="project-desc">Data-driven nutrition tracking and meal planning tool — personalized dietary analysis with Python and Jupyter Notebook.</p>
+      <a href="https://github.com/falcon-140/student-meal-planner" class="project-link">github.com/falcon-140/student-meal-planner →</a>
+    </div>
+
+    <div class="project-card" data-cat="data">
+      <div class="project-num" aria-hidden="true">14</div>
+      <div class="project-lang"><span class="lang-dot"></span>Jupyter · Fitness</div>
+      <h3 class="project-name">Fitness Tracker (DTD)</h3>
+      <p class="project-desc">Exercise and fitness data tracker — day-to-day performance analysis, progress metrics, and data visualization for health outcomes.</p>
+      <a href="https://github.com/falcon-140/fitness-dtd" class="project-link">github.com/falcon-140/fitness-dtd →</a>
+    </div>
+
+    <div class="project-card" data-cat="data">
+      <div class="project-num" aria-hidden="true">15</div>
+      <div class="project-lang"><span class="lang-dot"></span>Jupyter · SMP</div>
+      <h3 class="project-name">SMP — Data Analysis</h3>
+      <p class="project-desc">Structured data analysis and modeling project — pipeline design, exploratory data analysis, and insight generation with Python.</p>
+      <a href="https://github.com/falcon-140/smp" class="project-link">github.com/falcon-140/smp →</a>
+    </div>
+
+    <div class="project-card" data-cat="systems">
+      <div class="project-num" aria-hidden="true">16</div>
+      <div class="project-lang"><span class="lang-dot"></span>C++ · Graphics</div>
+      <h3 class="project-name">Bezier Curve Renderer</h3>
+      <p class="project-desc">Interactive Bezier curve rendering engine in C++ — computational geometry, curve interpolation, and real-time graphical output.</p>
+      <a href="https://github.com/falcon-140/bezier-curve" class="project-link">github.com/falcon-140/bezier-curve →</a>
+    </div>
+
+    <div class="project-card" data-cat="systems">
+      <div class="project-num" aria-hidden="true">17</div>
+      <div class="project-lang"><span class="lang-dot"></span>C · Graphics</div>
+      <h3 class="project-name">Skybox Design</h3>
+      <p class="project-desc">3D skybox rendering system in C — environment mapping, graphics pipeline implementation, and real-time scene rendering.</p>
+      <a href="https://github.com/falcon-140/skybox-design" class="project-link">github.com/falcon-140/skybox-design →</a>
+    </div>
+
+    <div class="project-card" data-cat="systems">
+      <div class="project-num" aria-hidden="true">18</div>
+      <div class="project-lang"><span class="lang-dot"></span>Java · Patterns</div>
+      <h3 class="project-name">OOP Design Patterns</h3>
+      <p class="project-desc">Factory, Strategy, and other core OOP pattern implementations in Java — clean reference architecture for enterprise design patterns.</p>
+      <a href="https://github.com/falcon-140/Patterns-Factory-etc-" class="project-link">github.com/falcon-140/Patterns-Factory-etc- →</a>
+    </div>
+
+    <div class="project-card" data-cat="ai">
+      <div class="project-num" aria-hidden="true">19</div>
+      <div class="project-lang"><span class="lang-dot"></span>Python · AI</div>
+      <h3 class="project-name">AI Topic Code — Basics</h3>
+      <p class="project-desc">Foundational AI and ML algorithm implementations — core concepts in Python covering key AI topics from first principles.</p>
+      <a href="https://github.com/falcon-140/AI_TOPIC_CODE_BASIC" class="project-link">github.com/falcon-140/AI_TOPIC_CODE_BASIC →</a>
+    </div>
+
+    <div class="project-card" data-cat="ai">
+      <div class="project-num" aria-hidden="true">20</div>
+      <div class="project-lang"><span class="lang-dot"></span>Python · Health AI</div>
+      <h3 class="project-name">Gym Injury Predictor</h3>
+      <p class="project-desc">AI-powered gym injury risk assessment tool — predictive modeling for workout safety and injury prevention recommendations.</p>
+      <a href="https://github.com/falcon-140/gym-injury" class="project-link">github.com/falcon-140/gym-injury →</a>
+    </div>
+
+    <div class="project-card" data-cat="systems">
+      <div class="project-num" aria-hidden="true">21</div>
+      <div class="project-lang"><span class="lang-dot"></span>Python · VBES</div>
+      <h3 class="project-name">VBES</h3>
+      <p class="project-desc">Python-based system project — backend engineering and systems-level implementation with structured data handling.</p>
+      <a href="https://github.com/falcon-140/VBES" class="project-link">github.com/falcon-140/VBES →</a>
+    </div>
+
+    <div class="project-card" data-cat="ai">
+      <div class="project-num" aria-hidden="true">22</div>
+      <div class="project-lang"><span class="lang-dot"></span>Python · AI</div>
+      <h3 class="project-name">Durga</h3>
+      <p class="project-desc">Python AI project — intelligent system design and implementation with a focus on applied artificial intelligence techniques.</p>
+      <a href="https://github.com/falcon-140/durga" class="project-link">github.com/falcon-140/durga →</a>
+    </div>
+
+  </div>
+
+  <!-- FEATURED -->
+  <div class="featured">
+    <div>
+      <div class="live-dot">Flagship Project</div>
+      <h3 class="featured-title">AquaCalm AI — Real-Time Voice Assistant</h3>
+      <p class="featured-desc">Full production-grade voice AI system. Speech-to-text captures audio, Claude LLM processes intent and generates responses, TTS synthesizes with optional voice cloning — all streamed via WebSocket token-by-token before audio rendering begins.</p>
+      <p class="featured-desc" style="font-size:0.83rem;margin-bottom:0">REST API supports both audio and text modes with graceful error fallback at every layer. Custom SQLite ConversationStore maintains full session context across turns.</p>
+      <div class="feat-stack">Python · FastAPI · Google Speech-to-Text · Anthropic Claude API · TTS · Voice Cloning · WebSockets · SQLite · asyncio · Uvicorn</div>
+    </div>
+    <div class="featured-visual" role="img" aria-label="AquaCalm AI visual">
+      <div class="fv-ring fv-ring1"></div>
+      <div class="fv-ring fv-ring2"></div>
+      <div class="fv-text" aria-hidden="true">VOICE<br/>AI</div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="experience" class="exp-section">
+  <div class="section-eyebrow">
+    <div class="section-eyebrow-line"></div>
+    <span>Work Experience</span>
+  </div>
+  <h2 class="section-title">The Story So Far</h2>
+  <div class="exp-list">
+    <div class="exp-item">
+      <div class="exp-year">Nov 2021<br/>→ Jan 2024</div>
+      <div>
+        <div class="exp-role">Junior Software Developer</div>
+        <div class="exp-org">Tekenlight Solutions · India · Remote — Intern → Full-Time</div>
+        <ul class="exp-detail">
+          <li>Built and maintained full-stack web apps using AngularJS, Spring Boot, and SQL</li>
+          <li>Covered full SDLC — feature development, bug fixing, functional and regression testing</li>
+          <li>Delivered client-facing websites translating requirements into working frontend and backend software</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">May 2022<br/>→ Jan 2024</div>
+      <div>
+        <div class="exp-role">Freelance Software Developer</div>
+        <div class="exp-org">Vaishnavi Textiles · India · Remote · Self-Employed</div>
+        <ul class="exp-detail">
+          <li>Sole contractor — designed and delivered two complete business software systems</li>
+          <li>Built a modular React/TypeScript/Vite billing platform, digitizing manual bookkeeping workflows</li>
+          <li>Developed a full C# e-commerce app: product catalog, shopping cart, order processing</li>
+          <li>Managed client requirements, architecture, development, and testing end-to-end</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">May 2019<br/>→ May 2022</div>
+      <div>
+        <div class="exp-role">Software Developer & Team Lead</div>
+        <div class="exp-org">Agarwal Technologies · India · Part-Time</div>
+        <ul class="exp-detail">
+          <li>Contributed to software projects alongside B.S. Computer Science studies</li>
+          <li>Led team coordination, supervised project delivery, and mentored junior contributors</li>
+          <li>Built hands-on experience across full development workflows and client delivery cycles</li>
+        </ul>
+      </div>
+    </div>
+    <div class="exp-item">
+      <div class="exp-year">May 2018<br/>→ Present</div>
+      <div>
+        <div class="exp-role">Computer Science & Mathematics Tutor</div>
+        <div class="exp-org">Self-Employed · India / Remote · 6+ Years</div>
+        <ul class="exp-detail">
+          <li>Independently designed curricula and taught CS, mathematics, and science to secondary students</li>
+          <li>Tracked individual progress across diverse skill levels and learning styles</li>
+          <li>Developed deep technical communication skills — breaking down complex topics accessibly</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section style="padding-top:0;background:#080808">
+  <div class="section-eyebrow">
+    <div class="section-eyebrow-line"></div>
+    <span>Education</span>
+  </div>
+  <div class="edu-grid">
+    <div class="edu-card">
+      <div class="edu-deg">Master of Science<br/>in Computer Science</div>
+      <div class="edu-school">California State University, Fresno · Fresno, CA</div>
+      <div class="edu-year">Graduated May 2026</div>
+    </div>
+    <div class="edu-card">
+      <div class="edu-deg">Bachelor of Science<br/>in Computer Science</div>
+      <div class="edu-school">Vel Tech Dr. RR Dr. SR University · Chennai, India</div>
+      <div class="edu-year">Graduated May 2022</div>
+    </div>
+  </div>
+</section>
+
+<!-- AWARDS -->
+<section id="awards">
+  <div class="section-eyebrow">
+    <div class="section-eyebrow-line"></div>
+    <span>Awards & Recognition</span>
+  </div>
+  <h2 class="section-title">Highlights</h2>
+  <div class="awards-grid">
+    <div class="award-card">
+      <div class="award-icon">🏆</div>
+      <div class="award-title">ASA DataFest 2024 — 1st Place</div>
+      <div class="award-org">American Statistical Association · CSU Fresno · Apr 2024</div>
+      <div class="award-desc">Won a 48-hour competitive data analysis challenge. Recognized for innovative methodology, actionable insights, and most effective communication of findings to a panel of judges.</div>
+    </div>
+    <div class="award-card">
+      <div class="award-icon">🤖</div>
+      <div class="award-title">Brainwave Controlled Robotics — Runner-Up</div>
+      <div class="award-org">IIT Varanasi · Oct 2018 · Vel Tech University</div>
+      <div class="award-desc">Runner-up in a competitive robotics workshop at IIT Varanasi. Hands-on training in Arduino-motherboard integration and rapid coding deployment — applied later to autonomous systems projects.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="cert-section">
+  <div class="section-eyebrow">
+    <div class="section-eyebrow-line"></div>
+    <span>Certifications</span>
+  </div>
+  <h2 class="section-title">Credentials</h2>
+  <div class="cert-scroll">
+    <div class="cert-pill">NPTEL — Programming & Data Structures in Python</div>
+    <div class="cert-pill">NPTEL — Programming in C++</div>
+    <div class="cert-pill">Coursera — Programming for Everybody</div>
+    <div class="cert-pill">Coursera — Python Data Structures</div>
+    <div class="cert-pill">Coursera — Fundamentals of Graphic Design</div>
+    <div class="cert-pill">Coursera — Data Science Ethics</div>
+    <div class="cert-pill">Coursera — Media Ethics & Governance</div>
+    <div class="cert-pill">Coursera — Managing Responsibly</div>
+    <div class="cert-pill">Coursera — Wind Energy</div>
+    <div class="cert-pill">Coursera — Intro to Thermodynamics</div>
+    <div class="cert-pill">Coursera — International Criminal Law</div>
+    <div class="cert-pill">Coursera — Moralities of Everyday Life</div>
+    <div class="cert-pill">EF SET — C2 English Proficiency (79/100)</div>
+    <div class="cert-pill">LinkedIn Skill Assessment — Passed</div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <h2 class="contact-title">Let's Build<br/><em>Something Real</em></h2>
+  <p class="contact-sub">Open to software engineering, AI/ML, voice AI, and full-stack roles.<br/>California preferred — flexible across the US.</p>
+  <div class="contact-info">
+    <a href="mailto:lakshagarwal0710@gmail.com">lakshagarwal0710@gmail.com</a>
+    &nbsp;·&nbsp; Fresno, CA &nbsp;·&nbsp; Open to relocation
+  </div>
+  <div class="contact-links">
+    <a href="mailto:lakshagarwal0710@gmail.com" class="contact-link primary">Send Email</a>
+    <a href="https://linkedin.com/in/laksh-agarwal-7731501b2" class="contact-link">LinkedIn</a>
+    <a href="https://github.com/falcon-140" class="contact-link">GitHub</a>
+    <a href="https://falcon-140.github.io" class="contact-link">Website</a>
+  </div>
+  <div class="opt-badge">OPT / F-1 Authorized · Remote · Hybrid · On-Site</div>
+</section>
+
+<footer>
+  <div class="footer-copy">© 2026 Laksh Agarwal · Software Engineer & AI Developer</div>
+  <div class="footer-copy">github.com/falcon-140 · Fresno, CA</div>
+</footer>
+
+<script>
+const filterBtns = document.querySelectorAll('.filter-btn');
+const cards = document.querySelectorAll('.project-card');
+filterBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    filterBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    cards.forEach(card => {
+      if(f === 'all' || card.dataset.cat === f){
+        card.removeAttribute('data-hidden');
+      } else {
+        card.setAttribute('data-hidden','true');
+      }
+    });
+  });
+});
+</script>
+</body>
+</html>
